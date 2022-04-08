@@ -1,6 +1,7 @@
-package com.example.returnkotlin
+package com.example.returnkotlin.ui
 
 import androidx.navigation.findNavController
+import com.example.returnkotlin.R
 import com.example.returnkotlin.databinding.FragmentSelectOperationBinding
 
 class SelectOperationFragment : BaseFragment<FragmentSelectOperationBinding>() {
@@ -9,7 +10,8 @@ class SelectOperationFragment : BaseFragment<FragmentSelectOperationBinding>() {
     }
 
     override fun initViews() {
-        val action = SelectOperationFragmentDirections.actionToCountryList()
+        val action =
+            SelectOperationFragmentDirections.actionToCountryList()
         mBinding.goToCountryList.setOnClickListener {
             it.findNavController().navigate(action)
         }

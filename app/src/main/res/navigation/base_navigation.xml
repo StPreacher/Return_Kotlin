@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/countryListFragment"
-        android:name="com.example.returnkotlin.CountryListFragment"
+        android:name="com.example.returnkotlin.ui.CountryListFragment"
         android:label="CountryListFragment" />
     <fragment
         android:id="@+id/selectOperationFragment"
-        android:name="com.example.returnkotlin.SelectOperationFragment"
+        android:name="com.example.returnkotlin.ui.SelectOperationFragment"
         android:label="SelectOperationFragment" >
         <action
             android:id="@+id/actionToCountryList"
