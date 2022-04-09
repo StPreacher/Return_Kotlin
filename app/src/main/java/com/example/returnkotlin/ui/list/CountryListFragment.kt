@@ -1,7 +1,9 @@
-package com.example.returnkotlin.ui
+package com.example.returnkotlin.ui.list
 
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.base.ResourceStatus
@@ -15,6 +17,8 @@ import com.example.returnkotlin.viewmodel.vmfactory.CountryListViewModelFactory
 class CountryListFragment : BaseFragment<FragmentCountryListBinding>() {
 
     private val TAG : String = CountryListFragment::class.java.simpleName
+
+    private lateinit var adapter: CountryListAdapter
 
     private val mViewModel by lazy {
         val service = ApiClient.getClient().create(ApiService::class.java)
@@ -32,7 +36,12 @@ class CountryListFragment : BaseFragment<FragmentCountryListBinding>() {
         mViewModel.resource.observe(viewLifecycleOwner) {
             when(it.status) {
                 ResourceStatus.PROGRESS -> Log.v(TAG, "progress")
-                ResourceStatus.SUCCESS -> Log.v(TAG, "success")
+                ResourceStatus.SUCCESS -> {
+                    Log.v(TAG, "success")
+                    adapter = CountryListAdapter(it.data!!)
+                    mBinding.countryRV.layoutManager = LinearLayoutManager(this.context)
+                    mBinding.countryRV.adapter = adapter
+                }
                 ResourceStatus.ERROR -> Log.v(TAG, "error")
             }
         }

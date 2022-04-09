@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/countryListFragment"
-        android:name="com.example.returnkotlin.ui.CountryListFragment"
+        android:name="com.example.returnkotlin.ui.list.CountryListFragment"
         android:label="CountryListFragment" />
     <fragment
         android:id="@+id/selectOperationFragment"
