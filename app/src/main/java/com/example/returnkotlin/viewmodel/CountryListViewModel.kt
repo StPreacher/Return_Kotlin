@@ -1,11 +1,12 @@
 package com.example.returnkotlin.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.returnkotlin.base.Resource
+import com.example.returnkotlin.base.ResourceError
+import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.model.Country
 import com.example.returnkotlin.repo.CountryListRepository
-import com.example.returnkotlin.ui.CountryListFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,19 +15,23 @@ class CountryListViewModel constructor(private val repository : CountryListRepos
 
     private val TAG : String = CountryListViewModel::class.java.simpleName
 
-    val countryList = MutableLiveData<List<Country>>()
+    val resource = MutableLiveData<Resource<List<Country>>>()
 
     fun getAllMovies() {
-        val response = repository.getAllCountries()
-        response.enqueue(object : Callback<List<Country>>{
+        resource.postValue(Resource(ResourceStatus.PROGRESS))
+        val doRequest = repository.getAllCountries()
+        doRequest.enqueue(object : Callback<List<Country>>{
             override fun onResponse(call: Call<List<Country>>, response: Response<List<Country>>) {
                 if (response.isSuccessful) {
-                    countryList.postValue(response.body())
+                    resource.postValue(Resource(ResourceStatus.SUCCESS,response.body()))
+                } else{
+                    resource.postValue(Resource(ResourceStatus.ERROR,null, ResourceError(61,"something wrong")))
                 }
             }
 
             override fun onFailure(call: Call<List<Country>>, t: Throwable) {
-                Log.v(TAG,"fail " + t.localizedMessage)
+                resource.postValue(Resource(ResourceStatus.ERROR,null,
+                    t.localizedMessage?.let { ResourceError(62, it) }))
             }
 
         })

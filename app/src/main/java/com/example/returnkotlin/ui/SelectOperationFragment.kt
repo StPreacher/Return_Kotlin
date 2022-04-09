@@ -2,6 +2,7 @@ package com.example.returnkotlin.ui
 
 import androidx.navigation.findNavController
 import com.example.returnkotlin.R
+import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.databinding.FragmentSelectOperationBinding
 
 class SelectOperationFragment : BaseFragment<FragmentSelectOperationBinding>() {

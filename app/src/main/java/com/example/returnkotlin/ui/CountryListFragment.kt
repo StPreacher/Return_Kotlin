@@ -3,6 +3,8 @@ package com.example.returnkotlin.ui
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.example.returnkotlin.R
+import com.example.returnkotlin.base.BaseFragment
+import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.databinding.FragmentCountryListBinding
 import com.example.returnkotlin.repo.CountryListRepository
 import com.example.returnkotlin.service.ApiClient
@@ -27,12 +29,12 @@ class CountryListFragment : BaseFragment<FragmentCountryListBinding>() {
 
     override fun initViews() {
         mViewModel.getAllMovies()
-        mViewModel.countryList.observe(viewLifecycleOwner) {
-            for (item in it) {
-                item.countryCode?.let { code -> Log.v(TAG , code) }
-                item.name?.let { name -> Log.v(TAG, name) }
+        mViewModel.resource.observe(viewLifecycleOwner) {
+            when(it.status) {
+                ResourceStatus.PROGRESS -> Log.v(TAG, "progress")
+                ResourceStatus.SUCCESS -> Log.v(TAG, "success")
+                ResourceStatus.ERROR -> Log.v(TAG, "error")
             }
-
         }
     }
 
