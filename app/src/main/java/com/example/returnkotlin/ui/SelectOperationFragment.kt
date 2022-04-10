@@ -11,10 +11,15 @@ class SelectOperationFragment : BaseFragment<FragmentSelectOperationBinding>() {
     }
 
     override fun initViews() {
-        val action =
+        val actionToCountryListPage =
             SelectOperationFragmentDirections.actionToCountryList()
+        val actionToHolidayPage =
+            SelectOperationFragmentDirections.actionHolidayFragment()
         mBinding.goToCountryList.setOnClickListener {
-            it.findNavController().navigate(action)
+            it.findNavController().navigate(actionToCountryListPage)
+        }
+        mBinding.goToHolidayPage.setOnClickListener {
+            it.findNavController().navigate(actionToHolidayPage)
         }
     }
 

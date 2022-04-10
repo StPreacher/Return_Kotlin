@@ -16,5 +16,12 @@
         <action
             android:id="@+id/actionToCountryList"
             app:destination="@id/countryListFragment" />
+        <action
+            android:id="@+id/actionHolidayFragment"
+            app:destination="@id/publicHolidayFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/publicHolidayFragment"
+        android:name="com.example.returnkotlin.ui.PublicHolidayFragment"
+        android:label="PublicHolidayFragment" />
 </navigation>
