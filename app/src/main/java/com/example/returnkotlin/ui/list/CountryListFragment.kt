@@ -11,6 +11,8 @@ import com.example.returnkotlin.databinding.FragmentCountryListBinding
 import com.example.returnkotlin.repo.CountryListRepository
 import com.example.returnkotlin.service.ApiClient
 import com.example.returnkotlin.service.ApiService
+import com.example.returnkotlin.util.hide
+import com.example.returnkotlin.util.show
 import com.example.returnkotlin.viewmodel.CountryListViewModel
 import com.example.returnkotlin.viewmodel.vmfactory.CountryListViewModelFactory
 
@@ -35,14 +37,26 @@ class CountryListFragment : BaseFragment<FragmentCountryListBinding>() {
         mViewModel.getAllMovies()
         mViewModel.resource.observe(viewLifecycleOwner) {
             when(it.status) {
-                ResourceStatus.PROGRESS -> Log.v(TAG, "progress")
+                ResourceStatus.PROGRESS -> {
+                    Log.v(TAG, "progress")
+                    mBinding.progressBar.show()
+                    mBinding.countryRV.hide()
+                    mBinding.errorText.hide()
+                }
                 ResourceStatus.SUCCESS -> {
                     Log.v(TAG, "success")
+                    mBinding.countryRV.show()
+                    mBinding.progressBar.hide()
+                    mBinding.errorText.hide()
                     adapter = CountryListAdapter(it.data!!)
-                    mBinding.countryRV.layoutManager = LinearLayoutManager(this.context)
                     mBinding.countryRV.adapter = adapter
                 }
-                ResourceStatus.ERROR -> Log.v(TAG, "error")
+                ResourceStatus.ERROR -> {
+                    Log.v(TAG, "error")
+                    mBinding.errorText.show()
+                    mBinding.countryRV.hide()
+                    mBinding.progressBar.hide()
+                }
             }
         }
     }
