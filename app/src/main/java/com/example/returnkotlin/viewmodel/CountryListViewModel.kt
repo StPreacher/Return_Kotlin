@@ -1,7 +1,6 @@
 package com.example.returnkotlin.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.returnkotlin.base.BaseViewModel
 import com.example.returnkotlin.base.Resource
 import com.example.returnkotlin.base.ResourceError
@@ -37,7 +36,6 @@ class CountryListViewModel @Inject constructor(private val repository : CountryL
                 resource.postValue(Resource(ResourceStatus.ERROR,null,
                     t.localizedMessage?.let { ResourceError(62, it) }))
             }
-
         })
     }
 }

@@ -22,9 +22,6 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>() : Fragmen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel.navigationAction.observe(viewLifecycleOwner){
-            findNavController().navigate(it)
-        }
         mBinding = DataBindingUtil.inflate(inflater, bindLayoutId(),container,false)
         mBinding.lifecycleOwner = viewLifecycleOwner
         return mBinding.root
@@ -32,13 +29,14 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>() : Fragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.navigationAction.observe(viewLifecycleOwner){
+            findNavController().navigate(it)
+        }
         initViews()
     }
 
     protected abstract fun bindLayoutId() : Int
 
     protected abstract fun initViews()
-
-
 
 }
