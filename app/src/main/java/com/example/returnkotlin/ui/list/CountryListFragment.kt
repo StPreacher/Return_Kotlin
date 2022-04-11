@@ -1,33 +1,24 @@
 package com.example.returnkotlin.ui.list
 
 import android.util.Log
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.viewModels
 import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.databinding.FragmentCountryListBinding
-import com.example.returnkotlin.repo.CountryListRepository
-import com.example.returnkotlin.service.ApiClient
-import com.example.returnkotlin.service.ApiService
-import com.example.returnkotlin.util.hide
-import com.example.returnkotlin.util.show
+import com.example.returnkotlin.util.extensions.hide
+import com.example.returnkotlin.util.extensions.show
 import com.example.returnkotlin.viewmodel.CountryListViewModel
-import com.example.returnkotlin.viewmodel.vmfactory.CountryListViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-class CountryListFragment : BaseFragment<FragmentCountryListBinding>() {
+private const val TAG : String = "CountryListFragment.java"
 
-    private val TAG : String = CountryListFragment::class.java.simpleName
+@AndroidEntryPoint
+class CountryListFragment : BaseFragment<FragmentCountryListBinding,CountryListViewModel>() {
 
     private lateinit var adapter: CountryListAdapter
 
-    private val mViewModel by lazy {
-        val service = ApiClient.getClient().create(ApiService::class.java)
-        val repository = CountryListRepository(service)
-        val factory = CountryListViewModelFactory(repository)
-        ViewModelProvider(this,factory).get(CountryListViewModel::class.java)
-    }
+    override val mViewModel : CountryListViewModel by viewModels()
 
     override fun bindLayoutId(): Int {
         return R.layout.fragment_country_list

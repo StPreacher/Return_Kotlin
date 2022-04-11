@@ -21,9 +21,6 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun provideRepository(apiService: ApiService) : PublicHolidayRepository = PublicHolidayRepository(apiService)
-
-    @Provides
     fun provideService(retrofit: Retrofit) : ApiService = retrofit.create(ApiService::class.java)
 
 }

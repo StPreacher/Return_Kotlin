@@ -2,6 +2,7 @@ package com.example.returnkotlin.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.returnkotlin.base.BaseViewModel
 import com.example.returnkotlin.base.Resource
 import com.example.returnkotlin.base.ResourceError
 import com.example.returnkotlin.base.ResourceStatus
@@ -14,8 +15,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class PublicHolidayViewModel @Inject constructor(private val repository: PublicHolidayRepository) :
-    ViewModel() {
+class PublicHolidayViewModel @Inject constructor(private val repository: PublicHolidayRepository) : BaseViewModel() {
 
     private val resource = MutableLiveData<Resource<List<PublicHoliday>>>()
 
@@ -37,7 +37,6 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
                 resource.postValue(Resource(ResourceStatus.ERROR,null,
                     t.localizedMessage?.let { ResourceError(62, it) }))
             }
-
         })
     }
 

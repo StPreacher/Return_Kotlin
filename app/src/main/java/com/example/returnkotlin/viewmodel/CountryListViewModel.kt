@@ -2,18 +2,22 @@ package com.example.returnkotlin.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.returnkotlin.base.BaseViewModel
 import com.example.returnkotlin.base.Resource
 import com.example.returnkotlin.base.ResourceError
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.model.Country
 import com.example.returnkotlin.repo.CountryListRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class CountryListViewModel constructor(private val repository : CountryListRepository) : ViewModel() {
+private const val TAG : String = "CountryListViewMode.java"
 
-    private val TAG : String = CountryListViewModel::class.java.simpleName
+@HiltViewModel
+class CountryListViewModel @Inject constructor(private val repository : CountryListRepository) : BaseViewModel() {
 
     val resource = MutableLiveData<Resource<List<Country>>>()
 

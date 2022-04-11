@@ -1,24 +1,21 @@
 package com.example.returnkotlin.ui
 
 import android.util.Log
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.databinding.FragmentPublicHolidayBinding
-import com.example.returnkotlin.util.toStringList
+import com.example.returnkotlin.util.extensions.toStringList
 import com.example.returnkotlin.viewmodel.PublicHolidayViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
+
+private const val TAG : String = "PublicHolidayFragment.java"
 
 @AndroidEntryPoint
-class PublicHolidayFragment : BaseFragment<FragmentPublicHolidayBinding>() {
+class PublicHolidayFragment : BaseFragment<FragmentPublicHolidayBinding,PublicHolidayViewModel>() {
 
-    private val TAG : String = PublicHolidayFragment::class.java.simpleName
-
-    private val mViewModel : PublicHolidayViewModel by lazy {
-        ViewModelProvider(this)[PublicHolidayViewModel::class.java]
-    }
+    override val mViewModel : PublicHolidayViewModel by viewModels()
 
     override fun bindLayoutId(): Int = R.layout.fragment_public_holiday
 
