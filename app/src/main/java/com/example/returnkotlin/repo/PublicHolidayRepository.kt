@@ -6,6 +6,6 @@ import javax.inject.Inject
 class PublicHolidayRepository @Inject constructor(
     private val service: ApiService) {
 
-    fun getPublicHolidays(year : Int, countryCode : String) = service.getPublicHolidays(year,countryCode)
+    suspend fun getPublicHolidays(year : Int, countryCode : String) = service.getPublicHolidays(year,countryCode)
 
 }

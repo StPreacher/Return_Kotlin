@@ -4,18 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.returnkotlin.base.BaseViewModel
 import com.example.returnkotlin.base.Resource
-import com.example.returnkotlin.base.Resource.Companion.onError
 import com.example.returnkotlin.base.ResourceError
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.model.Country
 import com.example.returnkotlin.repo.CountryListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 private const val TAG: String = "CountryListViewMode.java"
 
@@ -29,7 +26,8 @@ class CountryListViewModel @Inject constructor(private val repository: CountryLi
         resource.postValue(
             Resource(ResourceStatus.ERROR, null,
                 throwable.localizedMessage?.let { ResourceError(62, it) })
-        )}
+        )
+    }
 
     fun getAllCountries() {
         resource.postValue(Resource(ResourceStatus.PROGRESS))

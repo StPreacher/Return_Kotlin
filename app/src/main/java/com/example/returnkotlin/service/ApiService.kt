@@ -14,5 +14,5 @@ interface ApiService {
     suspend fun getCountries() : Response<List<Country>>
 
     @GET("/api/v3/PublicHolidays/{year}/{countryCode}")
-    fun getPublicHolidays(@Path("year") year: Int, @Path("countryCode") countryCode: String) : Call<List<PublicHoliday>>
+    suspend fun getPublicHolidays(@Path("year") year: Int, @Path("countryCode") countryCode: String) : Response<List<PublicHoliday>>
 }
