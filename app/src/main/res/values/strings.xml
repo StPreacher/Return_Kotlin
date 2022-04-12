@@ -8,4 +8,5 @@
     <string name="input_year">Input year</string>
     <string name="code">Code</string>
     <string name="get_holidays">Get holidays</string>
+    <string name="please_search">Please search...</string>
 </resources>

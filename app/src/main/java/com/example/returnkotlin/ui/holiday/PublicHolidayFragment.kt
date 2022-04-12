@@ -1,4 +1,4 @@
-package com.example.returnkotlin.ui
+package com.example.returnkotlin.ui.holiday
 
 import android.util.Log
 import androidx.fragment.app.viewModels

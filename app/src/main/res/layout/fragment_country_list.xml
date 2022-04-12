@@ -27,11 +27,11 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/countryRV"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
