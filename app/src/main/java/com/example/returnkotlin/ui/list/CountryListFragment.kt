@@ -25,7 +25,7 @@ class CountryListFragment : BaseFragment<FragmentCountryListBinding,CountryListV
     }
 
     override fun initViews() {
-        mViewModel.getAllMovies()
+        mViewModel.getAllCountries()
         mViewModel.resource.observe(viewLifecycleOwner) {
             when(it.status) {
                 ResourceStatus.PROGRESS -> {

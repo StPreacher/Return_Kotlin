@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class CountryListRepository @Inject constructor(private val retrofitService: ApiService){
 
-    fun getAllCountries() = retrofitService.getCountries()
+    suspend fun getAllCountries() = retrofitService.getCountries()
 
 }
