@@ -23,9 +23,7 @@ class CountryListAdapter(private var items : List<Country>) :
 
     inner class ViewHolder(private val mBinding: CountryItemBinding) :RecyclerView.ViewHolder(mBinding.root) {
         fun bind(item : Country) {
-            with(mBinding){
-                mBinding.model = item
-            }
+            mBinding.model = item
         }
     }
 }
