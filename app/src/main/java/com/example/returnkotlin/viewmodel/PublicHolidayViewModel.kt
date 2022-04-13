@@ -2,12 +2,14 @@ package com.example.returnkotlin.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseViewModel
 import com.example.returnkotlin.base.Resource
 import com.example.returnkotlin.base.ResourceError
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.model.PublicHoliday
 import com.example.returnkotlin.repo.PublicHolidayRepository
+import com.example.returnkotlin.util.ToastHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +21,10 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
     BaseViewModel() {
 
     private val resource = MutableLiveData<Resource<List<PublicHoliday>>>()
+
+    private var yearText = MutableLiveData<String?>()
+
+    private var countryCodeText = MutableLiveData<String?>()
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         resource.postValue(
@@ -47,6 +53,30 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
                 )
             }
         }
+    }
+
+    fun clickSearchBtn() {
+        val year = yearText.value
+        val countryCode = countryCodeText.value
+        when {
+            year.isNullOrBlank() -> {
+                toastHelper.showToastShort(stringHelper.getString(R.string.empty_year_toast))
+            }
+            countryCode.isNullOrBlank() -> {
+                toastHelper.showToastShort(stringHelper.getString(R.string.empty_country_code_toast))
+            }
+            else -> {
+                getPublicHolidays(year = year.toInt(), countryCode = countryCode)
+            }
+        }
+    }
+
+    fun updateYearText(text : String?) {
+        text?.let { yearText.postValue(text) }
+    }
+
+    fun updateCountryCodeText(text: String?) {
+        text?.let { countryCodeText.postValue(text) }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.returnkotlin.ui.holiday
 
 import android.util.Log
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
@@ -20,6 +21,17 @@ class PublicHolidayFragment : BaseFragment<FragmentPublicHolidayBinding,PublicHo
     override fun bindLayoutId(): Int = R.layout.fragment_public_holiday
 
     override fun initViews() {
+
+        mBinding.viewModel = mViewModel
+
+        mBinding.yearText.doAfterTextChanged {
+            mViewModel.updateYearText(it?.toString())
+        }
+
+        mBinding.countryCodeText.doAfterTextChanged {
+            mViewModel.updateCountryCodeText(it?.toString())
+        }
+
         mViewModel.getPublicHolidays(2022,"TR")
         mViewModel.getResource().observe(viewLifecycleOwner) {
             when(it.status) {

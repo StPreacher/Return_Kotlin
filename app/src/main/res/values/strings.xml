@@ -3,10 +3,12 @@
     <string name="country_list">Country List</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="something_went_wrong">Uppss... Something went wrong!</string>
+    <string name="something_went_wrong">Uppss… Something went wrong!</string>
     <string name="public_holiday">Public Holiday</string>
     <string name="input_year">Input year</string>
     <string name="code">Code</string>
     <string name="get_holidays">Get holidays</string>
-    <string name="please_search">Please search...</string>
+    <string name="please_search">Please search…</string>
+    <string name="empty_year_toast">Input year is empty!</string>
+    <string name="empty_country_code_toast">Country code is empty!</string>
 </resources>
