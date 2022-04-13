@@ -7,6 +7,9 @@ import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.databinding.FragmentPublicHolidayBinding
+import com.example.returnkotlin.util.extensions.changeWith
+import com.example.returnkotlin.util.extensions.hide
+import com.example.returnkotlin.util.extensions.show
 import com.example.returnkotlin.util.extensions.toStringList
 import com.example.returnkotlin.viewmodel.PublicHolidayViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +26,8 @@ class PublicHolidayFragment : BaseFragment<FragmentPublicHolidayBinding,PublicHo
     override fun initViews() {
 
         mBinding.viewModel = mViewModel
+        mBinding.searchStatusText.changeWith(getString(R.string.please_search))
+        mBinding.searchStatusText.show()
 
         mBinding.yearText.doAfterTextChanged {
             mViewModel.updateYearText(it?.toString())
@@ -32,20 +37,23 @@ class PublicHolidayFragment : BaseFragment<FragmentPublicHolidayBinding,PublicHo
             mViewModel.updateCountryCodeText(it?.toString())
         }
 
-        mViewModel.getPublicHolidays(2022,"TR")
         mViewModel.getResource().observe(viewLifecycleOwner) {
             when(it.status) {
                 ResourceStatus.PROGRESS -> {
-                    Log.v(TAG, "progress")
+                    mBinding.searchStatusText.hide()
+                    mBinding.holidayRV.hide()
+                    mBinding.progressBar.show()
                 }
                 ResourceStatus.SUCCESS -> {
-                    Log.v(TAG, "success")
-                    for (item in it.data?.toStringList()!!) {
-                        Log.v(TAG, "success: $item")
-                    }
+                    mBinding.progressBar.hide()
+                    mBinding.searchStatusText.hide()
+                    mBinding.holidayRV.show()
                 }
                 ResourceStatus.ERROR -> {
-                    Log.v(TAG, "error")
+                    mBinding.progressBar.hide()
+                    mBinding.holidayRV.hide()
+                    mBinding.searchStatusText.changeWith(getString(R.string.something_went_wrong))
+                    mBinding.searchStatusText.show()
                 }
             }
         }

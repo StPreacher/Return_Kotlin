@@ -9,7 +9,6 @@ import com.example.returnkotlin.base.ResourceError
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.model.PublicHoliday
 import com.example.returnkotlin.repo.PublicHolidayRepository
-import com.example.returnkotlin.util.ToastHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
