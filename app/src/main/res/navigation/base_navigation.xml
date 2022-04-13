@@ -22,6 +22,6 @@
     </fragment>
     <fragment
         android:id="@+id/publicHolidayFragment"
-        android:name="com.example.returnkotlin.ui.PublicHolidayFragment"
+        android:name="com.example.returnkotlin.ui.holiday.PublicHolidayFragment"
         android:label="PublicHolidayFragment" />
 </navigation>
