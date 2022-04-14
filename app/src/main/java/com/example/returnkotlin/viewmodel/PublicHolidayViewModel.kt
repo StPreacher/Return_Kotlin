@@ -57,7 +57,7 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
                     lastSearchArguments = HolidaySearchArgument(year, countryCode)
                     getPublicHolidays(year!!, countryCode)
                 } else {
-                    if (lastSearchArguments?.isSame(HolidaySearchArgument(year,countryCode)) == false){
+                    if (lastSearchArguments?.isSame(HolidaySearchArgument(year,countryCode)) == false) {
                         lastSearchArguments = HolidaySearchArgument(year, countryCode)
                         getPublicHolidays(year!!, countryCode)
                     }

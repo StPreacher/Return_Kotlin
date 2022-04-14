@@ -6,6 +6,7 @@ import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.base.ResourceStatus
 import com.example.returnkotlin.databinding.FragmentPublicHolidayBinding
+import com.example.returnkotlin.model.PublicHoliday
 import com.example.returnkotlin.util.extensions.changeWith
 import com.example.returnkotlin.util.extensions.hide
 import com.example.returnkotlin.util.extensions.show
