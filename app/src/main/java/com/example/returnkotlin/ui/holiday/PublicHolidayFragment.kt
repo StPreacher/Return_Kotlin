@@ -1,5 +1,8 @@
 package com.example.returnkotlin.ui.holiday
 
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.example.returnkotlin.R
@@ -49,6 +52,9 @@ class PublicHolidayFragment : BaseFragment<FragmentPublicHolidayBinding, PublicH
                     mBinding.searchStatusText.hide()
                     mBinding.holidayRV.show()
                     mAdapter = PublicHolidayAdapter(it.data!!)
+                    mAdapter.itemClick = { holiday ->
+                        Toast.makeText(context,"${holiday.countryCode} ${holiday.date}",Toast.LENGTH_SHORT).show()
+                    }
                     mBinding.holidayRV.adapter = mAdapter
                 }
                 ResourceStatus.ERROR -> {

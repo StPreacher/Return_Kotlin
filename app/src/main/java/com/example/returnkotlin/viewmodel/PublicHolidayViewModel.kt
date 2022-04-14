@@ -29,7 +29,7 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
 
     private var countryCodeText = MutableLiveData<String?>()
 
-    private var lastSearchArguments : HolidaySearchArgument? = null
+    private var lastSearchArguments: HolidaySearchArgument? = null
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         resource.postValue(
@@ -57,7 +57,13 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
                     lastSearchArguments = HolidaySearchArgument(year, countryCode)
                     getPublicHolidays(year!!, countryCode)
                 } else {
-                    if (lastSearchArguments?.isSame(HolidaySearchArgument(year,countryCode)) == false) {
+                    if (lastSearchArguments?.isSame(
+                            HolidaySearchArgument(
+                                year,
+                                countryCode
+                            )
+                        ) == false
+                    ) {
                         lastSearchArguments = HolidaySearchArgument(year, countryCode)
                         getPublicHolidays(year!!, countryCode)
                     }
@@ -66,7 +72,7 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
         }
     }
 
-    fun updateYearText(text : String?) {
+    fun updateYearText(text: String?) {
         text?.let { yearText.postValue(text) }
     }
 
@@ -79,7 +85,17 @@ class PublicHolidayViewModel @Inject constructor(private val repository: PublicH
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val response = repository.getPublicHolidays(year, countryCode)
             if (response.isSuccessful) {
-                resource.postValue(Resource(ResourceStatus.SUCCESS, response.body()))
+                if (response.body() == null) {
+                    resource.postValue(
+                        Resource(
+                            ResourceStatus.ERROR,
+                            null,
+                            ResourceError(61, response.message())
+                        )
+                    )
+                } else {
+                    resource.postValue(Resource(ResourceStatus.SUCCESS, response.body()))
+                }
             } else {
                 resource.postValue(
                     Resource(
