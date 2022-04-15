@@ -16,4 +16,8 @@ class SelectOperationViewModel @Inject constructor() : BaseViewModel() {
         navigate(SelectOperationFragmentDirections.actionHolidayFragment())
     }
 
+    fun onCountryInfoClick() {
+        navigate(SelectOperationFragmentDirections.actionToCountryInfoFragment())
+    }
+
 }

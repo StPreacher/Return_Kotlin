@@ -19,9 +19,17 @@
         <action
             android:id="@+id/actionHolidayFragment"
             app:destination="@id/publicHolidayFragment" />
+        <action
+            android:id="@+id/actionToCountryInfoFragment"
+            app:destination="@id/countryInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/publicHolidayFragment"
         android:name="com.example.returnkotlin.ui.holiday.PublicHolidayFragment"
         android:label="PublicHolidayFragment" />
+    <fragment
+        android:id="@+id/countryInfoFragment"
+        android:name="com.example.returnkotlin.ui.info.CountryInfoFragment"
+        android:label="fragment_country_info"
+        tools:layout="@layout/fragment_country_info" />
 </navigation>
