@@ -1,5 +1,6 @@
 package com.example.returnkotlin.di
 
+import com.example.returnkotlin.repo.CountryInfoRepository
 import com.example.returnkotlin.repo.CountryListRepository
 import com.example.returnkotlin.repo.PublicHolidayRepository
 import com.example.returnkotlin.service.ApiService
@@ -17,5 +18,8 @@ object RepositoryModule {
 
     @Provides
     fun provideCountryListRepository(apiService: ApiService) : CountryListRepository = CountryListRepository(apiService)
+
+    @Provides
+    fun provideCountryInfoRepository(apiService: ApiService) : CountryInfoRepository = CountryInfoRepository(apiService)
 
 }
