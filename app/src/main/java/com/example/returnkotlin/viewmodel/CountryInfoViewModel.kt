@@ -3,6 +3,7 @@ package com.example.returnkotlin.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.returnkotlin.base.BaseViewModel
 import com.example.returnkotlin.base.Resource
 import com.example.returnkotlin.base.ResourceError
 import com.example.returnkotlin.base.ResourceStatus
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CountryInfoViewModel @Inject constructor(private val repository: CountryInfoRepository) :
-    ViewModel() {
+    BaseViewModel() {
 
     val resource = MutableLiveData<Resource<CountryInfo>>()
 
