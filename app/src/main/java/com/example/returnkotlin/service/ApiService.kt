@@ -1,6 +1,7 @@
 package com.example.returnkotlin.service
 
 import com.example.returnkotlin.model.Country
+import com.example.returnkotlin.model.CountryInfo
 import com.example.returnkotlin.model.PublicHoliday
 import retrofit2.Call
 import retrofit2.Response
@@ -15,4 +16,7 @@ interface ApiService {
 
     @GET("/api/v3/PublicHolidays/{year}/{countryCode}")
     suspend fun getPublicHolidays(@Path("year") year: Int, @Path("countryCode") countryCode: String) : Response<List<PublicHoliday>>
+
+    @GET("/api/v2/CountryInfo")
+    suspend fun getCountryInfo(@Query("countryCode") countryCode: String) : Response<CountryInfo>
 }
