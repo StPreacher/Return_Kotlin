@@ -12,4 +12,5 @@
     <string name="empty_year_toast">Input year is empty!</string>
     <string name="empty_country_code_toast">Country code is empty!</string>
     <string name="country_infos">Country infos</string>
+    <string name="create_pdf">create pdf</string>
 </resources>

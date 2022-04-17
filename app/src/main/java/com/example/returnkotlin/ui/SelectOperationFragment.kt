@@ -1,13 +1,13 @@
 package com.example.returnkotlin.ui
 
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.returnkotlin.R
 import com.example.returnkotlin.base.BaseFragment
 import com.example.returnkotlin.databinding.FragmentSelectOperationBinding
 import com.example.returnkotlin.viewmodel.SelectOperationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SelectOperationFragment : BaseFragment<FragmentSelectOperationBinding, SelectOperationViewModel>() {
 
     override val mViewModel : SelectOperationViewModel by viewModels()
